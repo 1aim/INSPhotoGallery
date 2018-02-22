@@ -37,6 +37,7 @@ open class INSPhotosOverlayView: UIView , INSPhotosOverlayViewable {
     open private(set) var navigationBar: UINavigationBar!
     open private(set) var captionLabel: UILabel!
     open private(set) var deleteToolbar: UIToolbar!
+    open var indexPattern: String = "%d of %d"
     
     open private(set) var navigationItem: UINavigationItem!
     open weak var photosViewController: INSPhotosViewController?
@@ -126,7 +127,7 @@ open class INSPhotosOverlayView: UIView , INSPhotosOverlayViewable {
 
         if let photosViewController = photosViewController {
             if let index = photosViewController.dataSource.indexOfPhoto(photo) {
-                navigationItem.title = String(format:NSLocalizedString("%d of %d",comment:""), index+1, photosViewController.dataSource.numberOfPhotos)
+                navigationItem.title = String(format:NSLocalizedString(indexPattern,comment:""), index+1, photosViewController.dataSource.numberOfPhotos)
             }
             captionLabel.attributedText = photo.attributedTitle
         }
